@@ -8,3 +8,6 @@ class LinkedJobsSpider(scrapy.Spider):
         first_job_on_page = 0
         first_url = self.api_url + str(first_job_on_page)
         yield scrapy.Request(url=first_url, callback= self.parse_job, meta{'first_job_on_page':first_job_on_page})
+    
+    def parse_job(self, response):
+        first_job_on_page= response.meta['first_job_on_page']
