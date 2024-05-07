@@ -23,11 +23,15 @@ SCRAPEOPS_API_KEY = '9885f1bb-7da6-40c5-b043-af2a201cc166'
   
 SCRAPEOPS_PROXY_ENABLED = True
 
-
-DOWNLOADER_MIDDLEWARES = {
-    'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
+EXTENSIONS = {
+    'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500, 
 }
 
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+}
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

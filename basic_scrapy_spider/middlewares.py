@@ -55,7 +55,9 @@ class BasicScraperSpiderMiddleware:
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
 
-
+EXTENSIONS = {
+    'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500, 
+}
 class QuotesJsScraperDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
@@ -79,7 +81,7 @@ class QuotesJsScraperDownloaderMiddleware:
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
         return None
-
+    
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
 
